@@ -1,4 +1,4 @@
-package vn.edu.iuh.Lab05;
+package vn.edu.iuh.fit.Lab05;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
