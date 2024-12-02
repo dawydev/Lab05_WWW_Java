@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.Lab05.backend.models;
+package vn.edu.iuh.Lab05.backend.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,6 +21,6 @@ public class Job {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company")
-    private vn.edu.iuh.Lab05.Company company;
+    private Company company;
 
 }

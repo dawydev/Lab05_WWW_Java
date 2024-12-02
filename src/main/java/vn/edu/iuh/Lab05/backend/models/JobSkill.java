@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.Lab05.backend.models;
+package vn.edu.iuh.Lab05.backend.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,12 +15,12 @@ public class JobSkill {
     @MapsId("jobId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "job_id", nullable = false)
-    private vn.edu.iuh.Lab05.Job job;
+    private Job job;
 
     @MapsId("skillId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "skill_id", nullable = false)
-    private vn.edu.iuh.Lab05.Skill skill;
+    private Skill skill;
 
     @Column(name = "more_infos", length = 1000)
     private String moreInfos;

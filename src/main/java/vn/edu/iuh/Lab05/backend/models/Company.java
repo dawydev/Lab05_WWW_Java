@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.Lab05.backend.models;
+package vn.edu.iuh.Lab05.backend.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,6 +30,6 @@ public class Company {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
-    private vn.edu.iuh.Lab05.Address address;
+    private Address address;
 
 }
