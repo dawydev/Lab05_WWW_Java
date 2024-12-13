@@ -163,4 +163,16 @@ public class CandidateController {
         }
         return "redirect:/login";
     }
+
+    @GetMapping("/search-jobs")
+    public String searchJobs(@RequestParam String keyword, Model model, HttpSession session) {
+        Account loggedInUser = (Account) session.getAttribute("loggedInUser");
+        if (loggedInUser != null && "CANDIDATE".equals(loggedInUser.getRole())) {
+            List<Job> searchResults = jobRepository.findByNameContainingOrDescriptionContaining(keyword, keyword);
+            model.addAttribute("searchResults", searchResults);
+            model.addAttribute("keyword", keyword);
+            return "candidates/search-results";
+        }
+        return "redirect:/login";
+    }
 }
