@@ -22,7 +22,7 @@ public class CompanyController {
     @Autowired
     private JobRepository jobRepository;
 
-    @GetMapping("dashboard")
+    @GetMapping("/company/dashboard")
     public String showDashboard(Model model) {
         List<Company> companies = companyRepository.findAll();
         Map<Company, List<Job>> companyJobsMap = companies.stream()
