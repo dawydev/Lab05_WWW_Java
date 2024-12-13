@@ -1,59 +1,65 @@
 package vn.edu.iuh.Lab05.backend.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "candidate")
-@NamedQueries({
-        @NamedQuery(name = "Candidate.findAll", query = "select c from Candidate c")
-})
-
+@Data
+@NoArgsConstructor
 public class Candidate {
     @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @Column(name = "dob", nullable = false)
-    private LocalDate dob;
-
-    @Column(name = "email", nullable = false)
-    private String email;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "can_id")
+    private long id;
 
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "phone", nullable = false, length = 15)
-    private String phone;
+    @Column(name = "dob", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dob;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
-    public Candidate(String fullName, LocalDate dob, Address address, String phone, String email, int i) {
+    @Column(name = "phone", length = 15, nullable = false, unique = true)
+    private String phone;
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    private int status = 1;
+
+    public Candidate(String fullName, LocalDate dob, Address address, String phone, String email) {
         this.fullName = fullName;
         this.dob = dob;
         this.address = address;
         this.phone = phone;
         this.email = email;
     }
-    public Candidate() {
+
+    public Candidate(String fullName, LocalDate dob, Address address, String phone, String email, int status) {
+        this.fullName = fullName;
+        this.dob = dob;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Candidate{" +
-                "id=" + id +
-                ", dob=" + dob +
-                ", email='" + email + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address=" + address +
-                '}';
-    }
+    //====================RELATIONSHIPS========================
+    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    private List<Experience> experiences;
+
+    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    private List<CandidateSkill> candidateSkills;
+
+
 }

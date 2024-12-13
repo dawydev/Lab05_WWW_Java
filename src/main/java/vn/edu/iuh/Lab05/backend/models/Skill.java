@@ -1,28 +1,34 @@
 package vn.edu.iuh.Lab05.backend.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import vn.edu.iuh.fit.backend.enums.SkillType;
 
-@Getter
-@Setter
+import java.util.List;
+
+//Read skill list at: https://www.yourdictionary.com/articles/examples-skills-list
+//API: https://github.com/workforce-data-initiative/skills-api/wiki/API-Overview#swagger-ui-test-client
 @Entity
 @Table(name = "skill")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Skill {
     @Id
-    @Column(name = "skill_id", nullable = false)
-    private Long id;
-
-    @Column(name = "skill_description")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "skill_id")
+    private long id;
+    @Column(name = "skill_name", nullable = false, length = 150)
+    private String skillName;
+    @Column(name = "skill_type", nullable = false)
+    private SkillType type;
+    @Column(name = "skill_desc", nullable = false, length = 300)
     private String skillDescription;
 
-    @Column(name = "skill_name")
-    private String skillName;
-
-    @Column(name = "type")
-    private Byte type;
+    //====================
+    @OneToMany(mappedBy = "skill")
+    private List<JobSkill>jobSkills;
 
 }

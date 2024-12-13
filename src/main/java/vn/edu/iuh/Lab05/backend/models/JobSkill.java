@@ -1,31 +1,31 @@
 package vn.edu.iuh.Lab05.backend.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import vn.edu.iuh.fit.backend.enums.SkillLevel;
+import vn.edu.iuh.fit.backend.ids.JobSkillID;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "job_skill")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@IdClass(JobSkillID.class)
 public class JobSkill {
-    @EmbeddedId
-    private JobSkillId id;
-
-    @MapsId("jobId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "job_id", nullable = false)
-    private Job job;
-
-    @MapsId("skillId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "skill_id", nullable = false)
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "skill_id")
     private Skill skill;
 
-    @Column(name = "more_infos", length = 1000)
-    private String moreInfos;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Job job;
 
     @Column(name = "skill_level", nullable = false)
-    private Byte skillLevel;
-
+    private SkillLevel skillLevel;
+    @Column(name = "more_infos", length = 1000)
+    private String moreInfo;
 }

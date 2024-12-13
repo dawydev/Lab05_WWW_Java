@@ -1,35 +1,44 @@
 package vn.edu.iuh.Lab05.backend.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+import java.util.List;
+
 @Entity
 @Table(name = "company")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Company {
     @Id
-    @Column(name = "comp_id", nullable = false)
-    private Long id;
-
-    @Column(name = "about", length = 2000)
-    private String about;
-
-    @Column(name = "email", nullable = false)
-    private String email;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "com_id")
+    private long id;
 
     @Column(name = "comp_name", nullable = false)
-    private String compName;
+    private String name;
+
+    @OneToOne
+    @JoinColumn(name = "address", nullable = false)
+    private Address address;
+
+    @Column(name = "web_url")
+    private String webURL;
 
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "web_url")
-    private String webUrl;
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "address", nullable = false)
-    private Address address;
+    @Column(name = "about", length = 2000)
+    private String about;
 
+    //==================RELATIONSHIPS=====================
+    @OneToMany(mappedBy = "company")
+//    @JoinColumn(name = "jobs")
+    private List<Job> jobs;
 }
