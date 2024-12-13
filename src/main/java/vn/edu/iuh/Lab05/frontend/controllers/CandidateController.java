@@ -4,6 +4,7 @@ import com.neovisionaries.i18n.CountryCode;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -146,6 +147,17 @@ public class CandidateController {
             // Lấy tất cả các công việc
             List<Job> allJobs = jobRepository.findAll();
             model.addAttribute("allJobs", allJobs);
+
+            // Đề xuất các kỹ năng mà ứng viên chưa có
+            Set<Skill> allSkills = allJobs.stream()
+                    .flatMap(job -> job.getJobSkills().stream())
+                    .map(JobSkill::getSkill)
+                    .collect(Collectors.toSet());
+            Set<Skill> candidateSkillSet = candidate.getCandidateSkills().stream()
+                    .map(CandidateSkill::getSkill)
+                    .collect(Collectors.toSet());
+            allSkills.removeAll(candidateSkillSet);
+            model.addAttribute("suggestedSkills", allSkills);
 
             return "candidates/dashboard";
         }

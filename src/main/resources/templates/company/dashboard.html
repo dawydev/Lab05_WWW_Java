@@ -29,6 +29,17 @@
         .job-card p {
             color: #6c757d;
         }
+        .required-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .required-skill-item {
+            padding: 5px 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
     </style>
 </head>
 <body>
@@ -46,13 +57,14 @@
             <h4 th:text="${job.name}">Job Name</h4>
             <p th:text="${job.description}">Job Description</p>
             <h5>Required Skills</h5>
-            <ul>
-                <li th:each="jobSkill : ${job.jobSkills}" class="mb-2">
+            <div class="required-skills">
+                <div th:each="jobSkill : ${job.jobSkills}" class="required-skill-item">
                     <strong th:text="${jobSkill.skill.skillName}">Skill Name</strong> - 
                     <span class="badge bg-secondary" th:text="${jobSkill.skillLevel}">Skill Level</span>
                     <p class="text-muted" th:text="${jobSkill.moreInfo}" style="font-size: 0.9rem;">More Info</p>
-                </li>
-            </ul>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3" th:onclick="'location.href=\'/company/find-candidates?jobId=' + ${job.id} + '\''">Find Candidates</button>
         </div>
     </div>
 

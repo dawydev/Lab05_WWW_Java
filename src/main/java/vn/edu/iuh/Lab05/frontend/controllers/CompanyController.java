@@ -13,6 +13,7 @@ import vn.edu.iuh.Lab05.backend.repositories.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class CompanyController {
@@ -25,6 +26,8 @@ public class CompanyController {
 
     @Autowired
     private SkillRepository skillRepository;
+    @Autowired
+    private CandidateRepository candidateRepository;
 
     @GetMapping("/company/dashboard")
     public String showDashboard(Model model, HttpSession session) {
@@ -73,5 +76,18 @@ public class CompanyController {
             return "redirect:/company/dashboard";
         }
         return "redirect:/login";
+    }
+
+    @GetMapping("/company/find-candidates")
+    public String findCandidates(@RequestParam Long jobId, Model model) {
+        Job job = jobRepository.findById(jobId).orElse(null);
+        if (job != null) {
+            List<Skill> jobSkills = job.getJobSkills().stream().map(JobSkill::getSkill).collect(Collectors.toList());
+            List<Candidate> suitableCandidates = candidateRepository.findByCandidateSkillsSkillIn(jobSkills);
+            model.addAttribute("suitableCandidates", suitableCandidates);
+            model.addAttribute("job", job);
+            return "company/suitable-candidates";
+        }
+        return "redirect:/company/dashboard";
     }
 }
