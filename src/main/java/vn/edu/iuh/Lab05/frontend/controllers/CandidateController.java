@@ -121,4 +121,11 @@ public class CandidateController {
         }
         return "redirect:/candidates";
     }
+
+    @GetMapping("dashboard")
+    public String showDashboard(Model model) {
+        List<Candidate> candidates = candidateRepository.findAll();
+        model.addAttribute("candidates", candidates);
+        return "candidates/dashboard";
+    }
 }

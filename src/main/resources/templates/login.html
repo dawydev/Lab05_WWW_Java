@@ -9,7 +9,6 @@
     <div class="container">
         <h2 class="mt-5">Login</h2>
         <form action="/login" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>
@@ -20,6 +19,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        <div th:if="${error}" class="alert alert-danger mt-3">
+            <p th:text="${error}"></p>
+        </div>
     </div>
 </body>
 </html>

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "accounts")
+@Table(name = "account")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +23,9 @@ public class Account {
     @Column(name = "role", nullable = false, length = 50)
     private String role;
 
+    @OneToOne(mappedBy = "account")
+    private Candidate candidate;
+
+    @OneToOne(mappedBy = "account")
+    private Company company;
 }

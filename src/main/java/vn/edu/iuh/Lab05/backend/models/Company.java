@@ -37,8 +37,11 @@ public class Company {
     @Column(name = "about", length = 2000)
     private String about;
 
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
     //==================RELATIONSHIPS=====================
     @OneToMany(mappedBy = "company")
-//    @JoinColumn(name = "jobs")
     private List<Job> jobs;
 }

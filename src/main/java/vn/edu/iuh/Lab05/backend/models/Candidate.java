@@ -25,7 +25,7 @@ public class Candidate {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
 
-    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
@@ -36,6 +36,10 @@ public class Candidate {
     private String email;
 
     private int status = 1;
+
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     public Candidate(String fullName, LocalDate dob, Address address, String phone, String email) {
         this.fullName = fullName;
@@ -60,6 +64,4 @@ public class Candidate {
 
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<CandidateSkill> candidateSkills;
-
-
 }
