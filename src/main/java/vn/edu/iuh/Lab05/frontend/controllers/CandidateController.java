@@ -1,6 +1,9 @@
 package vn.edu.iuh.Lab05.frontend.controllers;
 
 import com.neovisionaries.i18n.CountryCode;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import vn.edu.iuh.Lab05.backend.models.Account;
 import vn.edu.iuh.Lab05.backend.models.Address;
 import vn.edu.iuh.Lab05.backend.models.Candidate;
 import vn.edu.iuh.Lab05.backend.repositories.AddressRepository;
@@ -122,10 +127,15 @@ public class CandidateController {
         return "redirect:/candidates";
     }
 
-    @GetMapping("dashboard")
-    public String showDashboard(Model model) {
-        List<Candidate> candidates = candidateRepository.findAll();
-        model.addAttribute("candidates", candidates);
-        return "candidates/dashboard";
+    @GetMapping("/dashboard")
+    public String showDashboard(Model model, HttpSession session) {
+        Account loggedInUser = (Account) session.getAttribute("loggedInUser");
+        if (loggedInUser != null && "CANDIDATE".equals(loggedInUser.getRole())) {
+            Candidate candidate = candidateRepository.findByAccount(loggedInUser);
+            model.addAttribute("candidate", candidate);
+            model.addAttribute("skills", candidate.getCandidateSkills());
+            return "candidates/dashboard";
+        }
+        return "redirect:/login";
     }
 }

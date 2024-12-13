@@ -28,7 +28,7 @@ public class LoginController {
             if ("COMPANY".equals(account.getRole())) {
                 return "redirect:/company/dashboard";
             } else if ("CANDIDATE".equals(account.getRole())) {
-                return "redirect:/candidate/dashboard";
+                return "redirect:/candidates/dashboard";
             }
         }
         model.addAttribute("error", "Invalid username or password");

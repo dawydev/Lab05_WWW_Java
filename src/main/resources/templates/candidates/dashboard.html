@@ -8,6 +8,15 @@
 <body>
     <div class="container">
         <h1>Welcome to Candidate Dashboard</h1>
+        <h2 th:text="${candidate.fullName}">Candidate Name</h2>
+        <h3>Skills</h3>
+        <ul>
+            <li th:each="candidateSkill : ${skills}">
+                <span th:text="${candidateSkill.skill.skillName}">Skill Name</span> - 
+                <span th:text="${candidateSkill.skillLevel}">Skill Level</span>
+                <p th:text="${candidateSkill.moreInfo}">More Info</p>
+            </li>
+        </ul>
         <a href="/logout" class="btn btn-primary">Logout</a>
     </div>
 </body>
