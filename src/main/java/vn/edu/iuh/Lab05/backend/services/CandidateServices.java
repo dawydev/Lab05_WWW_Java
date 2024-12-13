@@ -3,8 +3,8 @@ package vn.edu.iuh.Lab05.backend.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-import vn.edu.iuh.fit.backend.models.Candidate;
-import vn.edu.iuh.fit.backend.repositories.CandidateRepository;
+import vn.edu.iuh.Lab05.backend.models.Candidate;
+import vn.edu.iuh.Lab05.backend.repositories.CandidateRepository;
 
 import java.util.Collections;
 import java.util.List;
