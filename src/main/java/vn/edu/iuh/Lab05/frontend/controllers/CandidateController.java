@@ -12,11 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import vn.edu.iuh.Lab05.backend.models.Account;
-import vn.edu.iuh.Lab05.backend.models.Address;
-import vn.edu.iuh.Lab05.backend.models.Candidate;
+import vn.edu.iuh.Lab05.backend.models.*;
 import vn.edu.iuh.Lab05.backend.repositories.AddressRepository;
 import vn.edu.iuh.Lab05.backend.repositories.CandidateRepository;
+import vn.edu.iuh.Lab05.backend.repositories.JobRepository;
 import vn.edu.iuh.Lab05.backend.services.CandidateServices;
 
 
@@ -34,6 +33,8 @@ public class CandidateController {
     private CandidateServices candidateServices;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private JobRepository jobRepository;
 
     @GetMapping("/list")
     public String showCandidateList(Model model) {
@@ -134,6 +135,18 @@ public class CandidateController {
             Candidate candidate = candidateRepository.findByAccount(loggedInUser);
             model.addAttribute("candidate", candidate);
             model.addAttribute("skills", candidate.getCandidateSkills());
+
+            // Gợi ý các công việc có skill phù hợp với ứng viên
+            List<Skill> candidateSkills = candidate.getCandidateSkills().stream()
+                    .map(CandidateSkill::getSkill)
+                    .collect(Collectors.toList());
+            List<Job> suggestedJobs = jobRepository.findByJobSkillsSkillIn(candidateSkills);
+            model.addAttribute("suggestedJobs", suggestedJobs);
+
+            // Lấy tất cả các công việc
+            List<Job> allJobs = jobRepository.findAll();
+            model.addAttribute("allJobs", allJobs);
+
             return "candidates/dashboard";
         }
         return "redirect:/login";

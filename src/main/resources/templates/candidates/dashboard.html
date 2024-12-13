@@ -17,6 +17,42 @@
                 <p th:text="${candidateSkill.moreInfo}">More Info</p>
             </li>
         </ul>
+        <h3>Suggested Jobs</h3>
+        <ul>
+            <li th:each="job : ${suggestedJobs}">
+                <h4 th:text="${job.name}">Job Name</h4>
+                <p th:text="${job.description}">Job Description</p>
+                <h5>Company</h5>
+                <p th:if="${job.company != null}" th:text="${job.company.name}">Company Name</p>
+                <p th:if="${job.company == null}">Company not specified</p>
+                <h5>Required Skills</h5>
+                <ul>
+                    <li th:each="jobSkill : ${job.jobSkills}">
+                        <span th:text="${jobSkill.skill.skillName}">Skill Name</span> - 
+                        <span th:text="${jobSkill.skillLevel}">Skill Level</span>
+                        <p th:text="${jobSkill.moreInfo}">More Info</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h3>All Jobs</h3>
+        <ul>
+            <li th:each="job : ${allJobs}">
+                <h4 th:text="${job.name}">Job Name</h4>
+                <p th:text="${job.description}">Job Description</p>
+                <h5>Company</h5>
+                <p th:if="${job.company != null}" th:text="${job.company.name}">Company Name</p>
+                <p th:if="${job.company == null}">Company not specified</p>
+                <h5>Required Skills</h5>
+                <ul>
+                    <li th:each="jobSkill : ${job.jobSkills}">
+                        <span th:text="${jobSkill.skill.skillName}">Skill Name</span> - 
+                        <span th:text="${jobSkill.skillLevel}">Skill Level</span>
+                        <p th:text="${jobSkill.moreInfo}">More Info</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
         <a href="/logout" class="btn btn-primary">Logout</a>
     </div>
 </body>
