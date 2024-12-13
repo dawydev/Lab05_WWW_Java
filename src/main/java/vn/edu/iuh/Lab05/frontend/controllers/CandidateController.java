@@ -35,6 +35,7 @@ public class CandidateController {
         model.addAttribute("candidates", candidateRepository.findAll());
         return "candidates/list_no_paging";
     }
+    
 
     @GetMapping("")
     public String showCandidateListPaging(Model model,
