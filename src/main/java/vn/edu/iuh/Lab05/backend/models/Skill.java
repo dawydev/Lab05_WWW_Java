@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.edu.iuh.fit.backend.enums.SkillType;
-
+import vn.edu.iuh.Lab05.backend.enums.SkillType;
 import java.util.List;
 
 //Read skill list at: https://www.yourdictionary.com/articles/examples-skills-list
