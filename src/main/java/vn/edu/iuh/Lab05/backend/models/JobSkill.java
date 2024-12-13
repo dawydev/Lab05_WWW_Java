@@ -24,8 +24,10 @@ public class JobSkill {
     @JoinColumn(name = "job_id")
     private Job job;
 
+    @Convert(converter = SkillLevel.SkillLevelConverter.class)
     @Column(name = "skill_level", nullable = false)
     private SkillLevel skillLevel;
+
     @Column(name = "more_infos", length = 1000)
     private String moreInfo;
 }
