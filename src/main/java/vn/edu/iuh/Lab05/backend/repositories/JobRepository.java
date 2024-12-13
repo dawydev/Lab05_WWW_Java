@@ -10,5 +10,4 @@ import vn.edu.iuh.Lab05.backend.models.Job;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
         List<Job> findByCompany(Company company);
-
 }

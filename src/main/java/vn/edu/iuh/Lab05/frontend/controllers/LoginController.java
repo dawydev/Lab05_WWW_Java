@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import vn.edu.iuh.Lab05.backend.models.Account;
 import vn.edu.iuh.Lab05.backend.repositories.AccountRepository;
 
-
 @Controller
 public class LoginController {
 
@@ -29,7 +28,7 @@ public class LoginController {
             if ("COMPANY".equals(account.getRole())) {
                 return "redirect:/company/dashboard";
             } else if ("CANDIDATE".equals(account.getRole())) {
-                return "redirect:/candidates/dashboard";
+                return "redirect:/candidate/dashboard";
             }
         }
         model.addAttribute("error", "Invalid username or password");
