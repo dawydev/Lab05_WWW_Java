@@ -30,34 +30,34 @@ Dự án này là một ứng dụng cổng việc làm được thiết kế đ
 
 ## Hình ảnh 
 
-### Trang đăng nhập
+## Trang đăng nhập
 ![Trang chủ](screenshots/login.png)
 
-### Trang chủ ứng viên
+## Trang chủ ứng viên
 ![Bảng điều khiển ứng viên](screenshots/candidate-page.png)
 
-#### Gợi ý công việc - Gợi ý skills
+### Gợi ý công việc - Gợi ý skills
 ![Gợi ý công việc](screenshots/candidate-page-1.png)
 
-#### Tất cả công việc
+### Tất cả công việc
 ![Tất cả công việc](screenshots/candidate-page-2.png)
 
-### Tìm kiếm công việc (tương đối với tên công việc và mô tả)
+## Tìm kiếm công việc (tương đối với tên công việc và mô tả)
 ![Tìm kiếm công việc](screenshots/timKiemTuongDoi.png)
 
-### Trang chủ công ty
+## Trang chủ công ty
 ![Bảng điều khiển công ty](screenshots/company-page.png)
 
-### Đăng tin tuyển dụng
+## Đăng tin tuyển dụng
 ![Đăng tin tuyển dụng](screenshots/post-job.png)
 
-### Tìm kim ứng viên tiềm năng
+## Tìm kiếm ứng viên tiềm năng với công việc
 ![Ứng viên phù hợp](screenshots/suitable-candidates.png)
 
-### Danh sách ứng viên
+## Danh sách ứng viên
 ![Danh sách ứng viên](screenshots/candidates-list.png)
 
-### Thêm ứng viên
+## Thêm ứng viên
 ![Thêm ứng viên](screenshots/add.png)
 
 
