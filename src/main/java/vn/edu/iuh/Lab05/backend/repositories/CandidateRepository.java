@@ -10,8 +10,6 @@ import vn.edu.iuh.Lab05.backend.models.Account;
 import vn.edu.iuh.Lab05.backend.models.Candidate;
 import vn.edu.iuh.Lab05.backend.models.Skill;
 
-//@RepositoryRestResource(collectionResourceRel = "candidates", path = "candidates")
-//public interface CandidateRepository extends PagingAndSortingRepository<Candidate, Long> {
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     Page<Candidate> findAllByStatus(int status, Pageable pageable);
     Candidate findByAccount(Account account);

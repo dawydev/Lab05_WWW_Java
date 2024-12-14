@@ -111,7 +111,6 @@ public class CandidateController {
             @ModelAttribute("address") Address address,
             BindingResult result, Model model) {
         addressRepository.save(address);
-//        candidate.setAddress(address);
         candidateRepository.save(candidate);
         return "redirect:/candidates";
     }

@@ -58,7 +58,6 @@ public class Candidate {
         this.status = status;
     }
 
-    //====================RELATIONSHIPS========================
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<Experience> experiences;
 

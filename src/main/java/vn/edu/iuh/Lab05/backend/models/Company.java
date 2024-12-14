@@ -41,7 +41,6 @@ public class Company {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    //==================RELATIONSHIPS=====================
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 }

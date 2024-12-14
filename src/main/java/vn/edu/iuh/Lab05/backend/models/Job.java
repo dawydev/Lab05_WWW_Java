@@ -22,7 +22,6 @@ public class Job {
     private String description;
 
 
-//====================RELATIONSHIPS========================
     @ManyToOne
     @JoinColumn(name = "company")
     private Company company;
