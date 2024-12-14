@@ -21,6 +21,7 @@ Dự án này là một ứng dụng cổng việc làm được thiết kế đ
   - Xem gợi ý công việc dựa trên kỹ năng
   - Xem tất cả công việc
   - Tìm kiếm công việc
+  - Gợi ý skills
 - **Công ty**
   - Đăng bài tuyển dụng
   - Tìm kiếm ứng viên phù hợp
@@ -35,13 +36,13 @@ Dự án này là một ứng dụng cổng việc làm được thiết kế đ
 ### Trang chủ ứng viên
 ![Bảng điều khiển ứng viên](screenshots/candidate-page.png)
 
-#### Gợi ý công việc - Gợi ý skill
+#### Gợi ý công việc - Gợi ý skills
 ![Gợi ý công việc](screenshots/candidate-page-1.png)
 
 #### Tất cả công việc
 ![Tất cả công việc](screenshots/candidate-page-2.png)
 
-### Tìm kiếm công việc (tương đối với tên và mô tả)
+### Tìm kiếm công việc (tương đối với tên công việc và mô tả)
 ![Tìm kiếm công việc](screenshots/timKiemTuongDoi.png)
 
 ### Trang chủ công ty
